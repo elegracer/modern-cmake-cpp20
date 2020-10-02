@@ -1,0 +1,33 @@
+---
+Checks: "-*,\
+    bugprone-*,\
+    modernize-*,\
+    performance-*,\
+    readability-*,\
+    cppcoreguidelines-init-variables,\
+    cppcoreguidelines-narrowing-conversions,\
+    cppcoreguidelines-prefer-member-initializer,\
+    cppcoreguidelines-pro-type-member-init,\
+    -bugprone-lambda-function-name,\
+    -bugprone-reserved-identifier,\
+    -readability-else-after-return,\
+    -readability-function-cognitive-complexity, \
+    -readability-magic-numbers,\
+    -readability-avoid-const-params-in-decls"
+WarningsAsErrors:    ""
+HeaderFilterRegex:   ".*"
+FormatStyle:         none
+CheckOptions:
+- key:      readability-function-size.LineThreshold
+  value:    '2000'
+- key:      readability-function-size.StatementThreshold
+  value:    '2000'
+- key:      readability-function-size.BranchThreshold
+  value:    '2000'
+- key:      readability-function-size.ParameterThreshold
+  value:    '2000'
+- key:      readability-function-size.NestingThreshold
+  value:    '2000'
+- key:      readability-function-size.VariableThreshold
+  value:    '2000'
+...
