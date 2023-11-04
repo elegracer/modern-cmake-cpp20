@@ -1,6 +1,5 @@
-#define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
-#include <spdlog/fmt/chrono.h>
-#include <spdlog/fmt/fmt.h>
+#include <fmt/chrono.h>
+#include <fmt/core.h>
 
 
 auto

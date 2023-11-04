@@ -1,11 +1,8 @@
-/// suppress 'std::codecvt<code_unit, char, std::mbstate_t>' deprecation warning in c++20
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wdeprecated-declarations"
 #define SPDLOG_ACTIVE_LEVEL SPDLOG_LEVEL_TRACE
 #include <spdlog/sinks/basic_file_sink.h>
 #include <spdlog/sinks/daily_file_sink.h>
 #include <spdlog/spdlog.h>
-#pragma clang diagnostic pop
+
 
 auto
 main(int argc, const char* argv[]) -> int {
