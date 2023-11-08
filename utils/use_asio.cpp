@@ -41,7 +41,7 @@ run() -> boost::asio::awaitable<void> {
         resolver.cancel();
     });
 
-    auto result = co_await(
+    auto result = co_await (
         resolver.async_resolve(hostname, port, use_nothrow_awatable) || timer.async_wait(use_nothrow_awatable));
     if (result.index() == 1) {
         auto [ec] = std::get<1>(result);
