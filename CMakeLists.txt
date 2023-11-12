@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules")
-project(proj VERSION 2.2.3)
+project(proj VERSION 0.1.0.0)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_LIST_DIR}/bin")
 set(THIRDPARTY_SOURCE_DIR "${CMAKE_CURRENT_LIST_DIR}/3rdparty")
@@ -29,7 +29,7 @@ target_link_libraries(depends::boost INTERFACE Boost::boost Boost::json Boost::u
 # spdlog
 find_package(spdlog REQUIRED)
 add_library(depends::spdlog INTERFACE IMPORTED GLOBAL)
-target_link_libraries(depends::spdlog INTERFACE spdlog::spdlog_header_only)
+target_link_libraries(depends::spdlog INTERFACE spdlog::spdlog)
 # zlib
 find_package(ZLIB REQUIRED)
 add_library(depends::zlib INTERFACE IMPORTED GLOBAL)
@@ -61,8 +61,7 @@ option(PROJ_OPTION "..." ON)
 configure_file(cmake/version.h.in include/version.h)
 
 add_library(proj-core)
-target_sources(
-    proj-core
+target_sources(proj-core
     PRIVATE
         ${CMAKE_CURRENT_SOURCE_DIR}/src/core.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/core.h
@@ -72,17 +71,18 @@ target_sources(
         ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/te.hpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/ut.hpp
 )
-target_include_directories(
-    proj-core PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/src
-                   ${CMAKE_CURRENT_BINARY_DIR}/include
+target_include_directories(proj-core
+    PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+        ${CMAKE_CURRENT_BINARY_DIR}/include
 )
-target_link_libraries(
-    proj-core
-    PUBLIC depends::boost
-           depends::spdlog
-           depends::zlib
-           depends::openssl
-           depends::threads
+target_link_libraries(proj-core
+    PUBLIC
+        depends::boost
+        depends::spdlog
+        depends::zlib
+        depends::openssl
+        depends::threads
 )
 
 # if(CMAKE_CXX_COMPILER_ID MATCHES "Clang")
