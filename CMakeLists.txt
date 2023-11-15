@@ -60,17 +60,11 @@ option(PROJ_OPTION "..." ON)
 
 configure_file(cmake/version.h.in include/version.h)
 
+file(GLOB_RECURSE PROJ_CORE_SOURCE_FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+# message(STATUS ${PROJ_CORE_SOURCE_FILES})
+
 add_library(proj-core)
-target_sources(proj-core
-    PRIVATE
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/core.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/core.h
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/di.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/mp.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/sml2
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/te.hpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/src/boost-ext/ut.hpp
-)
+target_sources(proj-core PRIVATE ${PROJ_CORE_SOURCE_FILES})
 target_include_directories(proj-core
     PUBLIC
         ${CMAKE_CURRENT_SOURCE_DIR}/src
